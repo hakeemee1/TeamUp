@@ -40,7 +40,7 @@ function login() {
             <div className=" relative mx-28 mt-5">
               <h1 className=" font-semibold text-xl mt-2 ">Password</h1>
               <input
-                type="text"
+                type="password"
                 className=" relative bg-white rounded-xl w-full h-16 shadow-md mt-5  px-5  "
                 placeholder=" should contain alphabets numbers and characters"
               />
@@ -57,11 +57,11 @@ function login() {
                 Forgot password?
               </a>
               <div className="  flex items-center mt-5">
-                <div className="  w-1/2 h-16 bg-black rounded-xl shadow-xl"> 
+                <div className="  w-1/2 h-16 bg-black rounded-xl shadow-xl hover:bg-green-600 cursor-pointer"> 
                 <h1 className=" text-white mt-3 text-center font-medium text-2xl"> Log in</h1>
                 </div>
                 <div className=" bg-blue-400 w-2/5 h-16 rounded-xl ml-10">
-                <h1 className=" text-white mt-3 text-center font-medium text-2xl"> Sign Up</h1>
+                <h1 className=" text-white mt-3 text-center font-medium text-2xl cursor-pointer"> Sign Up</h1>
                 </div>
               </div>
             </div>
