@@ -13,6 +13,7 @@ function login() {
             <h1 className=" text-6xl font-bold mx-16 mt-4"> TeamUP™ </h1>
           </div>
           {/* Right */}
+          <form>
           <div className=" relative w-[40rem] bg-blue-200 h-[40rem] rounded-2xl m-auto shadow-lg">
             <h1 className=" text-center text-4xl font-semibold mt-6"> Login</h1>
             <div className=" relative bg-white rounded-xl w-2/3 h-16 shadow-md m-auto mt-10 flex">
@@ -66,6 +67,7 @@ function login() {
               </div>
             </div>
           </div>
+          </form>
           <div className=" flex items-center">
           </div>
         </div>
