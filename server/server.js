@@ -84,7 +84,35 @@ app.post('/api/login', async (req, res) => {
 token })
 })
 
+//use token if have a token, you can access all item or not have token you can't access all
+app.get('/api/users', async (req, res) => {
+  try {
+    //ส่ง Token ผ่าน Bearer token
+    const authHeader = req.headers['authorization']
+    let authToken  = ''
+    if(authHeader) {
+       authToken = authHeader.split(' ')[1] //ต้องการเเค่ตำเเหน่งที่ 2 (index 1) จะได้เเต่ token
+    }
+    console.log('authToken is : ',authToken)
+    //confirm token ที่ได้รับ คือของจริง
+    const user = jwt.verify(authToken, secret) //secret ต้องตรงถึงจะผ่าน
+    console.log('user', user.email)
+    //เรามั่นใจว่า user คนจริง
+    const [results] = await conn.query('SELECT * from users')
+    res.json({
+      users : results
+    })
 
+  } catch (error) {
+    console.log('error', error)
+    res.status(403).json ({
+      message : "Authentiaction fail",
+      error
+    })
+  
+  }
+
+})
 
 
 // Listen
