@@ -98,6 +98,11 @@ app.get('/api/users', async (req, res) => {
     const user = jwt.verify(authToken, secret) //secret ต้องตรงถึงจะผ่าน
     console.log('user', user.email)
     //เรามั่นใจว่า user คนจริง
+    //recheck from db
+    const [checkResults] = await conn.query('SELECT * from users where email = ?', user.email)
+    if (!checkResults[0]) {
+      throw { message: 'user not found'}
+    }
     const [results] = await conn.query('SELECT * from users')
     res.json({
       users : results
