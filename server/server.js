@@ -37,17 +37,34 @@ const initMySQL = async () => {
 
 /* เราจะแก้ไข code ที่อยู่ตรงกลาง */
 app.post('/api/register', async (req, res) => {
+  try {
   const { email, password} = req.body
+  const passwordHash = await bcrypt.hash(password, 10)
   const userData ={
     email,
-    password
+    password : passwordHash
   }
+  
   const [results] = await conn.query('INSERT INTO users SET ?', userData)
   res.json({
     message : "Insert ok",
-    results
+    results 
   })
+} catch (error) {
+  console.log("insert error")
+  res.json ({
+    message : "insert error",
+    error
+  })
+
+}
+
 })
+
+// Hash the password
+// const passwordHash = await bcrypt.hash(password, 10)
+// 10 = salt (การสุ่มค่าเพื่อเพิ่มความซับซ้อนในการเข้ารหัส)
+// และมันจะถูกนำมาใช้ตอน compare 
 
 // Listen
 app.listen(port, async () => {
