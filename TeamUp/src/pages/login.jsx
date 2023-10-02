@@ -11,10 +11,25 @@ const login = () => {
       email,
       password
     })
-    localStorage.setItem('token', response.data.token)
+    localStorage.setItem('token', response.data.token) //เก็บ Token ใน Localstorage
   
     } catch (error) {
       console.log('error', error)
+    }
+  }
+
+  const getUser = async () => {
+    try {
+    const authToken = localStorage.getItem('token')
+    const response = await axios.get('http://localhost:8000/api/users' , {
+      headers: {
+        'authorization': `Bearer ${authToken}`
+      }
+    })
+    console.log('user data', response.data)
+
+    } catch {
+
     }
   }
   return (
@@ -46,6 +61,9 @@ const login = () => {
         <div className="text-center">
           <button onClick={login} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
             Login
+          </button>
+          <button onClick={getUser} className=" mx-3 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            get data
           </button>
         </div>
 
