@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-const login = () => {
+const Login = () => {
 
   const login = async () => {
     try {
@@ -69,37 +69,11 @@ const login = () => {
 
         <hr className="my-6 border-t" />
 
-        <h2 className="text-2xl font-semibold mb-4">Register</h2>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="registerEmail">
-            Email
-          </label>
-          <input
-            className="border rounded w-full py-2 px-3"
-            type="email"
-            id="registerEmail"
-            placeholder="Email"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="registerPassword">
-            Password
-          </label>
-          <input
-            className="border rounded w-full py-2 px-3"
-            type="password"
-            id="registerPassword"
-            placeholder="Password"
-          />
-        </div>
-        <div className="text-center">
-          <button className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
-            Register
-          </button>
-        </div>
+        <a href="Register" className='  text-blue-400'>Create an account ?</a>
+
       </div>
     </div>
   );
 };
 
-export default login;
+export default Login;
