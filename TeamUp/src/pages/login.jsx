@@ -7,11 +7,11 @@ const login = () => {
     try {
     const email = document.querySelector('input[name = email]').value 
     const password = document.querySelector('input[name = password]').value
-    // const response = await axios.post('http://localhost:8000/api/login' , {
-    //   email,
-    //   password
-    // })
-    console.log(email, password)
+    const response = await axios.post('http://localhost:8000/api/login' , {
+      email,
+      password
+    })
+    console.log(response.data)
   
     } catch (error) {
       console.log('error', error)

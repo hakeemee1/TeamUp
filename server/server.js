@@ -10,9 +10,11 @@ const app = express()
 app.use(express.json())
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:8888']
+  origin: ['http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
 }))
 app.use(cookieParser())
+
 
 app.use(session({
   secret: 'secret',
@@ -68,21 +70,49 @@ app.post('/api/register', async (req, res) => {
 // และมันจะถูกนำมาใช้ตอน compare 
 
 // login section
+// app.post('/api/login', async (req, res) => {
+//   const { email, password } = req.body
+
+//   const [result] = await conn.query('SELECT * from users WHERE email = ?', email)
+//   const user = result[0]
+//   const match = await bcrypt.compare(password, user.password)
+//   if (!match) {
+//     return res.status(400).send({ message: 'Invalid email or password' })
+//   }
+
+//   res.send({ message: 'Login successful' })
+// })
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body
 
   const [result] = await conn.query('SELECT * from users WHERE email = ?', email)
+  
+  if (result.length === 0) {
+    // No user with the provided email was found
+    return res.status(400).send({ message: 'Invalid email or password' })
+  }
+
   const user = result[0]
   const match = await bcrypt.compare(password, user.password)
+
   if (!match) {
     return res.status(400).send({ message: 'Invalid email or password' })
   }
-  //create JWT Token with email
-  const token = jwt.sign({ email, role: 'user' }, secret, { expiresIn: '1h' })
-
-  res.send({ message: 'Login successful',
-token })
+  
+// create Token
+const token = jwt.sign({email, role: 'user'}, secret, { expiresIn : '1h'})
+res.json({
+  message: 'login success',
+  token
 })
+
+//   res.send({ message: 'Login successful' 
+// })
+})
+
+
+
+
 
 //use token if have a token, you can access all item or not have token you can't access all
 app.get('/api/users', async (req, res) => {
