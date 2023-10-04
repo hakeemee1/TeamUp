@@ -33,8 +33,12 @@ const Login = () => {
     }
   }
   return (
-    <div className="bg-gray-100 h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md">
+  //   <div
+  //   className="
+  //      absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-blue-400 t0-[#FFC0CB] rounded-md filter blur-3xl opacity-50 -z-50"
+  // />
+    <div className="bg-gradient-to-br from-blue-400 t0-[#FFC0CB]   h-screen flex items-center justify-center">
+      <div className="bg-white p-8 rounded-md shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">

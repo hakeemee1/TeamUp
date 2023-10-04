@@ -32,7 +32,7 @@ const Register = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-blue-200 p-6 rounded-lg shadow-md max-w-md mx-auto mt-56">
+    <div className=''>    <form onSubmit={handleSubmit} className="bg-blue-200 p-6 rounded-lg shadow-md max-w-md mx-auto mt-56">
   <div className="mb-4">
     <h1 className=' text-center text-3xl font-semibold mb-10'>Register</h1>
     <label className="block text-blue-600 text-sm font-semibold mb-2" htmlFor="email">
@@ -68,6 +68,7 @@ const Register = () => {
     Submit
   </button>
 </form>
+</div>
 
   )
 };
