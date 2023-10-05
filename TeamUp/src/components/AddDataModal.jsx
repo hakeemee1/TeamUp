@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import FileUpload from "./FileUpload";
+import axios from "axios";
 
 const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
   const [taskStatus, setTaskStatus] = useState("To-do");
@@ -20,15 +21,27 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Call the onSubmit function and pass formData
-    onSubmit(formData);
-    // Clear the form fields if needed
-    setFormData({});
-    // Close the modal
-    onClose();
+  
+    try {
+      // Send a POST request to your API endpoint with formData
+      const response = await axios.post('http://localhost:8000/api/addproject', formData);
+  
+      // Handle the response as needed (e.g., show a success message)
+      console.log('Project added successfully:', response.data);
+  
+      // Clear the form fields if needed
+      setFormData({});
+      
+      // Close the modal
+      onClose();
+    } catch (error) {
+      // Handle any errors that occur during the request (e.g., show an error message)
+      console.error('Error adding project:', error);
+    }
   };
+  
 
   return (
     <div
