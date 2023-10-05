@@ -4,6 +4,7 @@ import FileUpload from '../components/FileUpload'
 import Avarta from "react-avatar";
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import BoardView from '../components/BoardView';
+import { RectangleStackIcon } from '@heroicons/react/24/outline';
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +54,12 @@ function Home() {
           
         </div>
         
+        
       </div>
+      <div className=" flex my-5 mx-10 w-full h-full">
+            <h1 className=' font-semibold text-2xl ml-10 mr-5'>In Progess project</h1>
+            <RectangleStackIcon className=' w-8 h-8' />
+        </div>
     <div className="container mx-auto">
       <AddDataModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
     </div>

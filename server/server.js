@@ -54,7 +54,6 @@ app.post('/api/register', async (req, res) => {
     results 
   })
 } catch (error) {
-  console.log("insert error")
   res.json ({
     message : "insert error",
     error
@@ -141,7 +140,7 @@ app.post('/api/addproject', async (req, res) => {
     results 
   })
 } catch (error) {
-  console.log("insert error")
+
   res.json ({
     message : "insert error",
     error
