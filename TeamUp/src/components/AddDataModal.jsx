@@ -45,11 +45,11 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center ${
+      className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50 ${
         isOpen ? "block" : "hidden"
       }`}
     >
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-md">
+      <div className="bg-white p-6 rounded-lg shadow-md max-w-md z-50">
         <h2 className="text-2xl font-semibold mb-4">Ceate new project</h2>
         <form onSubmit={handleSubmit}>
           {/* Form fields go here */}

@@ -30,7 +30,7 @@ function Home() {
           className="
              absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-blue-400 t0-[#FFC0CB] rounded-md filter blur-3xl opacity-50 -z-50"
         />
-        <h1 className=" text-4xl font-bold mx-10">TeamUP™</h1>
+        <h1 className=" text-6xl font-bold mx-10 bg-gradient-to-r from-blue-500 to-red-600 bg-clip-text text-transparent ">TeamUP™</h1>
         <div className=" flex items-center space-x-5 flex-1 justify-end w-full">
           
         <button onClick={openModal} className=" bg-blue-400 p-3 rounded-lg text-white hover:bg-blue-500 hover:scale-105">Add new project +</button>
