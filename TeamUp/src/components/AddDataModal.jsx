@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import FileUpload from './FileUpload';
+import React, { useState } from "react";
+import FileUpload from "./FileUpload";
 
 const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
+  const [taskStatus, setTaskStatus] = useState("To-do");
+  const handleStatusChange = (e) => {
+    setTaskStatus(e.target.value);
+  };
   const [formData, setFormData] = useState({
     // Define your form fields here
   });
 
   const handleChange = (e) => {
+    //call handleStatusChange
+    handleStatusChange(e);
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -27,7 +33,7 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
   return (
     <div
       className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center ${
-        isOpen ? 'block' : 'hidden'
+        isOpen ? "block" : "hidden"
       }`}
     >
       <div className="bg-white p-6 rounded-lg shadow-md max-w-md">
@@ -35,46 +41,74 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
         <form onSubmit={handleSubmit}>
           {/* Form fields go here */}
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="fieldName">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="fieldName"
+            >
               Project name
             </label>
             <input
-            required
+              required
               type="text"
               name="title"
-              value={formData.title || ''}
+              value={formData.title || ""}
               onChange={handleChange}
               className="border border-gray-300 rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="fieldName">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="fieldName"
+            >
               Description
             </label>
             <input
-            required
+              required
               type="text"
               name="detail"
-              value={formData.detail || ''}
+              value={formData.detail || ""}
               onChange={handleChange}
               className="border border-gray-300 rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="fieldName">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="fieldName"
+            >
               Date
             </label>
             <input
-            required
+              required
               type="date"
               name="date"
-              value={formData.date || ''}
+              value={formData.date || ""}
               onChange={handleChange}
               className="border border-gray-300 rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
             />
           </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-semibold mb-2"
+              htmlFor="fieldName"
+            >
+              Status
+            </label>
+            <select
+              id="status"
+              name="status"
+              value={taskStatus}
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-3 py-2 mt-2 focus:outline-none focus:border-blue-500"
+            >
+              <option value="To-do">To-do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
           <FileUpload />
-          
+
           <div className="flex justify-end">
             <button
               type="button"

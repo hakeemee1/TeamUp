@@ -3,6 +3,7 @@ import AddDataModal from '../components/AddDataModal';
 import FileUpload from '../components/FileUpload'
 import Avarta from "react-avatar";
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import BoardView from '../components/BoardView';
 
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,6 +57,7 @@ function Home() {
     <div className="container mx-auto">
       <AddDataModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleSubmit} />
     </div>
+    <BoardView />
     </header>
   );
 }

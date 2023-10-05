@@ -82,33 +82,7 @@ app.post('/api/register', async (req, res) => {
 
 //   res.send({ message: 'Login successful' })
 // })
-app.post('/api/login', async (req, res) => {
-  const { email, password } = req.body
 
-  const [result] = await conn.query('SELECT * from users WHERE email = ?', email)
-  
-  if (result.length === 0) {
-    // No user with the provided email was found
-    return res.status(400).send({ message: 'Invalid email or password' })
-  }
-
-  const user = result[0]
-  const match = await bcrypt.compare(password, user.password)
-
-  if (!match) {
-    return res.status(400).send({ message: 'Invalid email or password' })
-  }
-  
-// create Token
-const token = jwt.sign({email, role: 'user'}, secret, { expiresIn : '1h'})
-res.json({
-  message: 'login success',
-  token
-})
-
-//   res.send({ message: 'Login successful' 
-// })
-})
 
 
 
@@ -149,6 +123,11 @@ app.get('/api/users', async (req, res) => {
 
 })
 
+
+// Post data to DB
+app.post('api/postproject', async (req, res) => {
+
+})
 
 // Listen
 app.listen(port, async () => {
