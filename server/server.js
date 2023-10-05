@@ -125,7 +125,29 @@ app.get('/api/users', async (req, res) => {
 
 
 // Post data to DB
-app.post('api/postproject', async (req, res) => {
+app.post('/api/addproject', async (req, res) => {
+  try {
+  const { title, description, date, status } = req.body
+  const projectData ={
+    title,
+    description,
+    date,
+    status
+  }
+  
+  const [results] = await conn.query('INSERT INTO projects SET ?', projectData)
+  res.json({
+    message : "Insert ok",
+    results 
+  })
+} catch (error) {
+  console.log("insert error")
+  res.json ({
+    message : "insert error",
+    error
+  })
+
+}
 
 })
 

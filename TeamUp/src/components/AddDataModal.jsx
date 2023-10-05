@@ -66,8 +66,8 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
             <input
               required
               type="text"
-              name="detail"
-              value={formData.detail || ""}
+              name="description"
+              value={formData.description || ""}
               onChange={handleChange}
               className="border border-gray-300 rounded w-full py-2 px-3 focus:outline-none focus:border-blue-500"
             />
