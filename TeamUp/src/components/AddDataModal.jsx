@@ -50,7 +50,7 @@ const AddDataModal = ({ isOpen, onClose, onSubmit }) => {
       }`}
     >
       <div className="bg-white p-6 rounded-lg shadow-md max-w-md z-50">
-        <h2 className="text-2xl font-semibold mb-4">Ceate new project</h2>
+        <h2 className="text-2xl font-semibold mb-4">Create new project</h2>
         <form onSubmit={handleSubmit}>
           {/* Form fields go here */}
           <div className="mb-4">

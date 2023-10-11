@@ -37,7 +37,6 @@ const initMySQL = async () => {
   })
 }
 
-/* เราจะแก้ไข code ที่อยู่ตรงกลาง */
 // register section
 app.post('/api/register', async (req, res) => {
   try {
@@ -69,18 +68,32 @@ app.post('/api/register', async (req, res) => {
 // และมันจะถูกนำมาใช้ตอน compare 
 
 // login section
-// app.post('/api/login', async (req, res) => {
-//   const { email, password } = req.body
+app.post('/api/login', async (req, res) => {
+  try {
+    const { email, password } = req.body
 
-//   const [result] = await conn.query('SELECT * from users WHERE email = ?', email)
-//   const user = result[0]
-//   const match = await bcrypt.compare(password, user.password)
-//   if (!match) {
-//     return res.status(400).send({ message: 'Invalid email or password' })
-//   }
+    const [result] = await conn.query('SELECT * from users WHERE email = ?', email)
+    const user = result[0]
+    if (!user) {
+      return res.status(400).send({ message: 'User not found' })
+    }
 
-//   res.send({ message: 'Login successful' })
-// })
+    const match = await bcrypt.compare(password, user.password)
+    if (!match) {
+      return res.status(400).send({ message: 'Invalid email or password' })
+    }
+
+    const token = jwt.sign({ email, role: 'admin' }, secret, { expiresIn: '1h' })
+
+    res.send({ message: 'Login successful', token })
+  } catch (error) {
+    // Handle errors here
+    console.error('Login error:', error);
+    res.status(500).send({ message: 'Internal server error' });
+  }
+});
+
+
 
 
 
